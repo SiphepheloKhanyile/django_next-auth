@@ -92,3 +92,4 @@ class UserInfoAPIView(APIView):
         return Response({**serializer.data, "role": role}, status=status.HTTP_200_OK)
 
 
+

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "user_auth",
     "rest_framework",
     "rest_framework.authtoken",
-    'corsheaders'
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -56,21 +56,36 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:3000',  # allow requests from this origin
-#     'http://example.com',  # allow requests from this origin
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # allow requests from this origin
+    # 'http://example.com',  # allow requests from this origin
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOW_METHODS = (
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# )
+
+from corsheaders.defaults import default_headers
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    "Authorization",
+)
 
 ROOT_URLCONF = "Api.urls"
 
