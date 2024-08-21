@@ -6,6 +6,7 @@ import { User } from "@/types/interfaces";
 import { Button } from "@/components/ui/button";
 import { UserInfo } from "@/types/interfaces";
 
+
 const Page = () => {
   const { data: session } = useSession();
   const [userData, setUserData] = useState<UserInfo>();
@@ -16,11 +17,12 @@ const Page = () => {
 
     const userToken = session?.user.accessToken;
 
-    const res = await fetch(`http://localhost:3000/api/info/`, {
-      method: "POST",
-      body: JSON.stringify({userToken}),
+    const res = await fetch(`http://localhost:8000/account/info/`, {
+      method: "GET",
+      // body: JSON.stringify({userToken}),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${userToken}`,
       }
     });
 
