@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AppBar from "./AppBar";
 import { cn } from "@/lib/utils";
+import Providers from "@/components/Providers";
+import AppBar from "@/components/AppBar";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
- });
+});
 
 export const metadata: Metadata = {
   title: "Next-Auth",
@@ -16,20 +17,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: Readonly<{
   children: React.ReactNode;
+  session: any
 }>) {
   return (
     <html lang="en">
-      
-      <body 
+      <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased h-screen",
           inter.variable
         )}
       >
-        <AppBar />
-        {children}
+        <Providers session={session}>
+          <AppBar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
